@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            margin-top: 200px;
+            margin-left: 150px;
+        }
+        .a {
+            float:left;
+        }
+        label{
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'roboto';
+            font-weight: 500;
+        }
+        select{
+            border-radius: 1px solid #555;
+            height: 40px;
+            width: 200px;
+            padding: 0px 15px;
+            margin-right:20px ;
+        }
+    </style>
+   
+    <script>
+         function populate1(s,s1){
+            var s = document.getElementById(s);
+            var s1 = document.getElementById(s1);
+            s1.innerHTML = "";
+            if(s.value == "india"){
+                var optionArray = ['|','gujarat|Gujarat','maharastra|Maharastra'];
+            } else if(s.value == "usa"){
+                var optionArray = ['|','texas|Texas','hawaii|Hawaii',]
+            }
+            for(var option in optionArray){
+                var pair = optionArray[option].split("|");
+                var newoption = document.createElement("option");
+                newoption.value = pair[0];
+                newoption.innerHTML = pair[1];
+                s1.options.add(newoption);
+            }     
+
+        }
+
+        function populate(s1,s2){
+            var s1 = document.getElementById(s1);
+            var s2 = document.getElementById(s2);
+            s2.innerHTML = "";
+            if(s1.value == "gujarat"){
+                var optionArray = ['|','rajkot|Rajkot','junagadh|Junagadh','Jetpur|jetpur','jamnagar|Jamnagar'];
+            } else if(s1.value == "maharastra"){
+                var optionArray = ['|','mumbai|Mumbai','pune|Pune','|nasikNasik','amravati|Amravati']
+            } else if(s1.value == "texas"){
+                var optionArray = ['|','waco|waco','austin|Austin','lubbock|Lubbock']
+            } else if(s1.value == "hawaii"){
+                var optionArray = ['|','oahu|Oahu','maui|Maui','kauai|Kauai']
+            }
+            for(var option in optionArray){
+                var pair = optionArray[option].split("|");
+                var newoption = document.createElement("option");
+                newoption.value = pair[0];
+                newoption.innerHTML = pair[1];
+                s2.options.add(newoption);
+                              
+            }     
+
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="a">
+            <label for="">Country</label>
+    <select name="slct" id="slct" onchange="populate1(this.id,'slct1')" >
+            <option value=""></option>
+            <option value="india">INDIA</option>
+            <option value="usa">USA</option>   
+    </select>
+    </div>
+        <div class="a">
+            <label for="">State</label>
+    <select name="slct1" id="slct1" onchange="populate(this.id,'slct2')">  
+       
+    </select>
+    </div>
+    <div class="b">
+        <label for="">City</label>
+  
+    <select name="slct2" id="slct2">
+    </select>
+    </div>
+    </div>
+</body>
+</html>
