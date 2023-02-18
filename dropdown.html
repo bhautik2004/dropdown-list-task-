@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <title>Document</title>
+    <style>
+        .container{
+            margin-top: 200px;
+            margin-left: 150px;
+        }
+        .a {
+            float:left;
+        }
+        label{
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'roboto';
+            font-weight: 500;
+        }
+        select{
+            border-radius: 1px solid #555;
+            height: 40px;
+            width: 200px;
+            padding: 0px 15px;
+            margin-right:20px ;
+        }
+    </style>
+   
+    <script>
+        $(document).ready(function() {
+    // Define the data for the dropdowns
+    var data = {
+      "usa": {
+        "newyork": ["New York City"],
+        "hawai": ["Los Angeles"],
+        "texasx": ["Houston"]
+      },
+      "india": {
+        "gujarat": ["rajkot"],
+        "maharastra": ["mumbai"],
+        "punjab": ["amritsar"]
+      },
+      "mexico": {
+        "durango": ["Mexico City"],
+        "jalisco": ["Guadalajara"],
+        "nuevoleon": ["Monterrey"]
+      }
+    };
+   
+    // Define the event handlers for the dropdowns
+    $("#country").change(function() {
+      var country = $(this).val();
+      var states = data[country];
+      var options = "<option value=''>Select State</option>";
+      for (var state in states) {
+        options += "<option value='" + state + "'>" + state + "</option>";
+      }
+      $("#state").html(options);
+      $("#city").html("<option value=''>Select City</option>");
+    });
+   
+    $("#state").change(function() {
+      var country = $("#country").val();
+      var state = $(this).val();
+      var cities = data[country][state];
+      var options = "<option value=''>Select City</option>";
+      for (var i = 0; i < cities.length; i++) {
+        options += "<option value='" + cities[i] + "'>" + cities[i] + "</option>";
+      }
+      $("#city").html(options);
+    });
+  });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="a">
+            <label for="">Country</label>
+    <select name="country" id="country" " >
+            <option value="">-- select Country --</option>
+            <option value="india">INDIA</option>
+            <option value="usa">USA</option> 
+            <option value="mexico">MAXICO</option>  
+    </select>
+    </div>
+        <div class="a">
+            <label for="">State</label>
+    <select name="state" id="state" ">  
+       
+    </select>
+    </div>
+    <div class="b">
+        <label for="">City</label>
+  
+    <select name="city" id="city">
+    </select>
+    </div>
+    </div>
+</body>
+</html>
